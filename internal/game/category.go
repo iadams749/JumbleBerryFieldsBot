@@ -191,8 +191,10 @@ func (t *ThreeCategory) CalcScore(berries []Berry) (int, error) {
 	}
 
 	t.Used = true
+	t.Score  = 0
 
 	if jberryCount >= 3 || sberryCount >= 3 || pberryCount >= 3 || mberryCount >= 3 || pestCount >= 3 {
+		t.Score = score
 		return score, nil
 	}
 
@@ -241,8 +243,10 @@ func (f *FourCategory) CalcScore(berries []Berry) (int, error) {
 	}
 
 	f.Used = true
+	f.Score = 0
 
 	if jberryCount >= 4 || sberryCount >= 4 || pberryCount >= 4 || mberryCount >= 4 || pestCount >= 4 {
+		f.Score = score
 		return score, nil
 	}
 
@@ -274,6 +278,7 @@ func (f *FiveCategory) CalcScore(berries []Berry) (int, error) {
 	berryType := berries[0]
 	for _, berry := range berries {
 		if berry != berryType {
+			f.Score = 0
 			return 0, nil
 		}
 	}
@@ -281,14 +286,19 @@ func (f *FiveCategory) CalcScore(berries []Berry) (int, error) {
 	// if all 5 are the same type, determine how many points to score
 	switch berryType {
 	case Jumbleberry:
+		f.Score = 10
 		return 10, nil
 	case Sugarberry:
+		f.Score = 10
 		return 10, nil
 	case Pickleberry:
+		f.Score = 20
 		return 20, nil
 	case Moonberry:
+		f.Score = 35
 		return 35, nil
 	default:
+		f.Score = 0
 		return 0, nil
 	}
 }
@@ -333,8 +343,11 @@ func (m *MixedCategory) CalcScore(berries []Berry) (int, error) {
 	m.Used = true
 
 	if !(foundJB && foundSB && foundPB && foundMB) {
+		m.Score = 0
 		return 0, nil
 	}
+
+	m.Score = score
 
 	return score, nil
 }
@@ -369,6 +382,7 @@ func (f *FreeCategory) CalcScore(berries []Berry) (int, error) {
 	}
 
 	f.Used = true
+	f.Score = score
 
 	return score, nil
 }

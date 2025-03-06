@@ -14,6 +14,7 @@ func (gs *GameState) ScoreCategory(cat Category) error {
 
 	gs.Score += score
 	gs.NewTurn()
+	gs.RollJars()
 
 	return nil
 }
