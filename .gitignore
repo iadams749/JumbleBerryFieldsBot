@@ -1,3 +1,5 @@
 # Go coverage reports
 coverage.html
 *coverage.out
+
+.go-version
