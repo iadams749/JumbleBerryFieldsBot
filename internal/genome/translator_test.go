@@ -1,4 +1,4 @@
-package nnet
+package genome
 
 import (
 	"reflect"
@@ -44,11 +44,11 @@ func TestGetTopKValues(t *testing.T) {
 			wantErr:  false,
 		},
 		{
-			name: "Not a Tensor",
-			data: nil,
+			name:     "Not a Tensor",
+			data:     nil,
 			expected: nil,
-			indices: nil,
-			wantErr: true,
+			indices:  nil,
+			wantErr:  true,
 		},
 	}
 	for _, tt := range tests {

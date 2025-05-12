@@ -1,4 +1,4 @@
-package nnet
+package genome
 
 import (
 	"fmt"
